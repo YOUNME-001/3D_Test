@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
         var playerCamera = Camera.main;
         if (playerCamera != null)
         {
+            _playerInput.camera = playerCamera;
             playerCamera.GetComponent<CameraController>().SetTarget(headTransform.transform, _playerInput);
         }
     }
@@ -111,7 +112,7 @@ public class PlayerController : MonoBehaviour
         }
         
         _velocityY += Constants.Gravity * Time.deltaTime;
-        movePosition.y = _velocityY;
+        movePosition.y = _velocityY * Time.deltaTime;
         _characterController.Move(movePosition);
     }
 }
