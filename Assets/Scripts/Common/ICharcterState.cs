@@ -1,4 +1,4 @@
-public interface IPlayerState
+public interface ICharcterState
 {
     void Enter();
     void Update();

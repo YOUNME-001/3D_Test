@@ -27,13 +27,16 @@ public class PlayerController : MonoBehaviour
     public static readonly int PlayerAniParamJump = Animator.StringToHash("jump");
     public static readonly int PlayerAniParamMoveSpeed = Animator.StringToHash("move_speed");
     public static readonly int PlayerAniParamGroundDistance = Animator.StringToHash("ground_distance");
+    public static readonly int PlayerAniParamAttack = Animator.StringToHash("attack");
+    
     
     public enum EPlayerState
     {
         None,
         Idle,
         Move,
-        Jump
+        Jump,
+        Attack
     }
     // 물리
     private float _velocityY;
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour
     // 현재 상태에 대한 정보
     public EPlayerState PlayerState { get; private set; }
     // 상태와 상태 객체를 담고있는 Dictionary
-    private Dictionary<EPlayerState, IPlayerState> _playerStates;
+    private Dictionary<EPlayerState, ICharcterState> _playerStates;
 
     private void Awake()
     {
@@ -52,15 +55,17 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         
         // 상태 객체 초기화
-        var IdlePlayerState = new IdlePlayerState(this, _animator, _playerInput);
-        var movePlayerState = new MovePlayerState(this, _animator, _playerInput);
-        var jumpPlayerState = new JumpPlayerState(this, _animator, _playerInput);
+        var idlePlayerState = new IdleCharcterState(this, _animator, _playerInput);
+        var movePlayerState = new MoveCharcterState(this, _animator, _playerInput);
+        var jumpPlayerState = new JumpCharcterState(this, _animator, _playerInput);
+        var attackPlayerState = new AttackCharcterState(this, _animator, _playerInput);
         
-        _playerStates = new Dictionary<EPlayerState, IPlayerState>
+        _playerStates = new Dictionary<EPlayerState, ICharcterState>
         {
-            { EPlayerState.Idle, IdlePlayerState },
+            { EPlayerState.Idle, idlePlayerState },
             { EPlayerState.Move, movePlayerState },
-            { EPlayerState.Jump, jumpPlayerState }
+            { EPlayerState.Jump, jumpPlayerState },
+            { EPlayerState.Attack , attackPlayerState },
         };
         
         // 카메라 할당
@@ -70,6 +75,9 @@ public class PlayerController : MonoBehaviour
             _playerInput.camera = playerCamera;
             playerCamera.GetComponent<CameraController>().SetTarget(headTransform.transform, _playerInput);
         }
+        
+        // 커서 숨기기
+        _playerInput.actions["Cursor"].performed += _ => GameManager.Instance.SetCursorLock();
     }
 
     private void Start()

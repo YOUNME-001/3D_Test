@@ -28,7 +28,7 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "14637941-7010-4661-97e1-0f6224422c9f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -46,6 +46,24 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "82b4c7fa-4d3b-47c5-acd8-412cd6d99027",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Camera",
+                    "type": "Button",
+                    "id": "a98ec521-c7a6-4112-ae4f-6fc946f1bcb5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cursor",
+                    "type": "Button",
+                    "id": "f0362535-1213-442f-b66c-45385fb2b869",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -292,6 +310,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d9163d2-df59-4aa7-8e2a-668059986800",
+                    "path": "<Keyboard>/leftAlt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41d34a27-2794-4177-b143-d8b4c9c1a89a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cursor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

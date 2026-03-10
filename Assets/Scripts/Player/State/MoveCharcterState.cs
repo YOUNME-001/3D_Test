@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovePlayerState : PlayerState, IPlayerState
+public class MoveCharcterState : PlayerState, ICharcterState
 {
     private float _moveSpeed;
     
-    public MovePlayerState(PlayerController playerController, Animator animator, PlayerInput playerInput) : 
+    public MoveCharcterState(PlayerController playerController, Animator animator, PlayerInput playerInput) : 
     base(playerController, animator, playerInput) { }
 
     public void Enter()
